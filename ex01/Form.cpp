@@ -1,7 +1,15 @@
 #include "Form.hpp"
 
 // ??? önce _name(name) şeklindeki atamalar mı çalışır, yoksa constructor içi mi çalışır? Constructor içi olması gerek ki fonksiyon doğru çalışsın.
-Form::Form(std::string name, int gradeSign): _name(name), _isSigned(false), _gradeSign(gradeSign), _gradeExec(_gradeSign)
+Form::Form(const std::string name, int gradeSign): _name(name), _isSigned(false), _gradeSign(gradeSign), _gradeExec(_gradeSign)
+{
+    if (gradeSign > 150)
+        throw Form::GradeTooLowException();
+    if (gradeSign < 1)
+        throw Form::GradeTooHighException();
+}
+
+Form::Form(const std::string name, int gradeSign, int gradeExec): _name(name), _isSigned(false), _gradeSign(gradeSign), _gradeExec(gradeExec)
 {
     if (gradeSign > 150)
         throw Form::GradeTooLowException();
@@ -11,20 +19,12 @@ Form::Form(std::string name, int gradeSign): _name(name), _isSigned(false), _gra
 
 Form::~Form() {}
 
-Form::Form(Form const &rhs)
-{
-    *this = rhs;
-}
+Form::Form(const Form &rhs): _name( rhs.get_name()), _gradeSign( rhs.get_gradeSign() ), _isSigned(get_isSigned()) , _gradeExec( rhs.get_gradeExec() ) {}
 
-Form& Form::operator=(Form const &rhs)
+Form& Form::operator=(const Form &rhs)
 {
     if (this != &rhs)
-    {
-        this->_name = rhs.get_name();
-        this->_isSigned = rhs.get_isSigned();
-        this->_gradeSign = rhs.get_gradeSign();
-        this->_gradeExec = rhs.get_gradeExec();
-    }
+        this->_isSigned = rhs.get_isSigned(); // other ones are const - not mofiable value
     return (*this);
 }
 
@@ -36,7 +36,7 @@ int Form::get_gradeExec(void) const { return this->_gradeExec; }
 
 bool Form::get_isSigned(void) const { return this->_isSigned; }
 
-std::ostream& operator<<(std::ostream &out, Form const &rhs)
+std::ostream& operator<<(std::ostream &out, const Form &rhs)
 {
     out << "name: " << rhs.get_name() << std::endl;
     out << "isSigned: " << rhs.get_isSigned() << std::endl;
@@ -45,7 +45,7 @@ std::ostream& operator<<(std::ostream &out, Form const &rhs)
     return out;
 }
 
-void Form::beSigned(Bureaucrat const &brc) // It changes the form status to signed if the bureaucrat’s grade is high enough - egal
+void Form::beSigned(const Bureaucrat &brc) // It changes the form status to signed if the bureaucrat’s grade is high enough - egal
 {
     if (brc.getGrade() > this->_gradeSign)
         throw Form::GradeTooLowException();

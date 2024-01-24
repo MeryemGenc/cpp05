@@ -1,23 +1,21 @@
 #include "ShrubberyCreationForm.hpp"
 
-ShrubberyCreationForm::ShrubberyCreationForm(std::string target): AForm("ShrubberyCreationForm", 145, 137), _target(target)
+ShrubberyCreationForm::ShrubberyCreationForm(const std::string target): AForm("ShrubberyCreationForm", 145, 137), _target(target)
 {   std::cout << "ShrubberyCreationForm constructor called." << std::endl; }
 
 ShrubberyCreationForm::~ShrubberyCreationForm() {}
 
-ShrubberyCreationForm::ShrubberyCreationForm(ShrubberyCreationForm const &rhs): AForm(rhs)
+ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm &rhs): AForm(rhs)
 { *this = rhs; }
 
-ShrubberyCreationForm& ShrubberyCreationForm::operator=(ShrubberyCreationForm const &rhs)
+ShrubberyCreationForm& ShrubberyCreationForm::operator=(const ShrubberyCreationForm &rhs)
 {
     std::cout << "ShrubberyCreationForm assigment function called." << std::endl;
-    if (this != &rhs)
-        this->_target = rhs._target; // if cant call direct _target -> write getTarget()
-        // this->_target = rhs.getTarget();
+    (void)rhs;
     return (*this);
 }
 
-void ShrubberyCreationForm::execute(Bureaucrat const & executor) const
+void ShrubberyCreationForm::execute(const Bureaucrat &executor) const
 {
     if (!get_isSigned())
         throw FormNotSignedException();

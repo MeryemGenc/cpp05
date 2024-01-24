@@ -1,24 +1,21 @@
 #include "RobotomyRequestForm.hpp"
 
-RobotomyRequestForm::RobotomyRequestForm(std::string target): AForm("RobotomyRequestForm", 72, 45), _target(target)
+RobotomyRequestForm::RobotomyRequestForm(const std::string target): AForm("RobotomyRequestForm", 72, 45), _target(target)
 {   std::cout << "RobotomyRequestForm constructor called." << std::endl; }
 
 RobotomyRequestForm::~RobotomyRequestForm() {}
 
-RobotomyRequestForm::RobotomyRequestForm(RobotomyRequestForm const &rhs): AForm(rhs)
+RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm &rhs): AForm(rhs)
 { *this = rhs; }
 
-RobotomyRequestForm& RobotomyRequestForm::operator=(RobotomyRequestForm const &rhs)
+RobotomyRequestForm& RobotomyRequestForm::operator=(const RobotomyRequestForm &rhs)
 {
     std::cout << "RobotomyRequestForm assigment function called." << std::endl;
-    if (this != &rhs)
-        this->_target = rhs._target; // if cant call direct _target -> write getTarget()
-        // this->_target = rhs.getTarget();
+    (void)rhs; // diğer türlü hata verdi.
     return (*this);
 }
 
-
-void RobotomyRequestForm::execute(Bureaucrat const & executor) const
+void RobotomyRequestForm::execute(const Bureaucrat &executor) const
 {
     if (!get_isSigned())
         throw FormNotSignedException();

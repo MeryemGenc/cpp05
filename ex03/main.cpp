@@ -2,61 +2,29 @@
 #include "ShrubberyCreationForm.hpp"
 #include "RobotomyRequestForm.hpp"
 #include "PresidentialPardonForm.hpp"
+#include "Intern.hpp"
 
 int main( void )
 {
-    // AForm f("form1", 20); // not allowed - AForm is abstract class
     {
-        std::cout << std::endl << "Test 1" << std::endl;
-        try {
-            Bureaucrat b("Buro", 5);
-            std::cout << b;
-            ShrubberyCreationForm f1("ayse");
-            RobotomyRequestForm f2("fatma");
-            PresidentialPardonForm f3("ali");
+        Intern someRandomIntern;
+        AForm* rrf;
+        rrf = someRandomIntern.makeForm("robotomy request", "Bender");
 
-            std::cout << f1;
-            std::cout << f2;
-            std::cout << f3;
+        // TRY
 
-            b.signForm(f1);
-            b.signForm(f2);
-            b.signForm(f3);
-
-            f1.execute(b);
-            f2.execute(b);
-            f3.execute(b);
-        }
-        catch (const std::exception&e)
-        {
-            std::cerr << e.what() << std::endl;
-        }
+        //Bureaucrat br("Ayse", 30);
+        //rrf->beSigned(br);
     }
     {
-        std::cout << std::endl << "Test 2" << std::endl;
-        try {
-            Bureaucrat b("Buro", 50);
-            std::cout << b;
-            ShrubberyCreationForm f1("ayse");
-            RobotomyRequestForm f2("fatma");
-            PresidentialPardonForm f3("ali");
+        Intern someRandomIntern;
+        AForm* ppf;
+        ppf = someRandomIntern.makeForm("presidential pardon", "Bender");
 
-            std::cout << f1;
-            std::cout << f2;
-            std::cout << f3;
+        // TRY
 
-            b.signForm(f1);
-            b.signForm(f2);
-            b.signForm(f3);
-            
-            f1.execute(b);
-            f2.execute(b);
-            f3.execute(b);
-        }
-        catch (const std::exception&e)
-        {
-            std::cerr << e.what() << std::endl;
-        }
+        //Bureaucrat br("Ayse", 78);
+        //ppf->execute(br);
     }
 
     return 0;

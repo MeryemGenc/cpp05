@@ -4,18 +4,20 @@
 #include <iostream>
 #include "Form.hpp"
 
+class Form;
+
 class Bureaucrat
 {
     private:
-        std::string const _name;
+        const std::string _name;
         int _grade; // 1 (highest) to 150 (lowest).
 
     public:
         Bureaucrat();
-        Bureaucrat(std::string name, int grade);
+        Bureaucrat(const std::string name, int grade);
         ~Bureaucrat();
-        Bureaucrat(Bureaucrat const &other);
-        Bureaucrat &operator=(Bureaucrat const &other);
+        Bureaucrat(const Bureaucrat &other);
+        Bureaucrat &operator=(const Bureaucrat &other);
 
         std::string getName(void) const;
         int getGrade(void) const;
@@ -25,10 +27,11 @@ class Bureaucrat
         
         void signForm(Form &f);
 
-        class GradeTooHighException: public std::exception // Exception classes don’t have to be designed in Orthodox Canonical Form.
+        // EXCEPTION CLASSES
+        class GradeTooHighException: public std::exception
         {
             public:
-                virtual const char* what() const throw() { return "Grade is too high!"; } // bu satırın çalışma mantığı nedir hala anlamadım.!
+                virtual const char* what() const throw() { return "Grade is too high!"; }
         };
 
         class GradeTooLowException: public std::exception
@@ -39,7 +42,7 @@ class Bureaucrat
 
 };
 
-std::ostream& operator<<(std::ostream &out, Bureaucrat const& obj);
+std::ostream& operator<<(std::ostream &out, const Bureaucrat& obj);
 
 /*
                ***************** virtual const char* what() const throw();
