@@ -11,10 +11,10 @@ class Intern
     public:
         Intern();
         ~Intern();
-        Intern(Intern const &rhs);
-        Intern& operator=(Intern const &rhs);
+        Intern(const Intern &rhs);
+        Intern& operator=(const Intern &rhs);
 
-        AForm *makeForm(std::string formName, std::string targetName);
+        AForm* makeForm(std::string formName, std::string targetName);
 };
 
 #endif

@@ -45,16 +45,4 @@ class Bureaucrat
 
 std::ostream& operator<<(std::ostream &out, const Bureaucrat& obj);
 
-
-
-/*
-               ***************** virtual const char* what() const throw();
-virtual: Bu anahtar kelime, bu fonksiyonun sanal (virtual) bir fonksiyon olduğunu belirtir. Sanal fonksiyonlar, bu fonksiyonun alt sınıflar tarafından ezilebileceği anlamına gelir. Yani, türetilmiş sınıflar kendi what fonksiyonlarını uygulayabilir ve temel sınıftaki what fonksiyonunu geçersiz kılabilir.
-
-const char* what() const: Bu kısım, what fonksiyonunun tanımını içerir. const char* türünde bir değer döndürdüğünü ve hiçbir parametre almadığını belirtir. Bu fonksiyon genellikle bir istisna nesnesinin hata açıklamasını (error description) döndürmek için kullanılır.
-
-throw(): Bu kısım, bu fonksiyonun hiçbir durumda istisna fırlatmayacağını belirtir. Yani, bu fonksiyonun içindeki herhangi bir hata durumunda istisna oluşturulmayacaktır. Bu, C++'ın eski bir istisna spesifikasyonu anlamına gelir ve modern C++'da genellikle kullanılmaz. Modern C++ standartları, noexcept anahtar kelimesini kullanmayı ve bu tür bir belirtinin terk edilmesini önerir. Ancak, eski kod tabanlarında hâlâ kullanılabilir.
-
-*/
-
 #endif

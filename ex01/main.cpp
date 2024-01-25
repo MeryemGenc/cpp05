@@ -10,6 +10,7 @@ int main( void )
         b.signForm(f);
         std::cout << f;
     }
+    std::cout << std::endl << std::endl;
     {
         Bureaucrat b("Haci", 25);
         Form f("form1", 20);

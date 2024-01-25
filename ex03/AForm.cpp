@@ -18,7 +18,7 @@ AForm::AForm(const std::string name, int gradeSign, int gradeExec): _name(name),
 
 AForm::~AForm() {}
 
-AForm::AForm(const AForm &rhs): _name( rhs.get_name()), _gradeSign( rhs.get_gradeSign() ), _isSigned(get_isSigned()) , _gradeExec( rhs.get_gradeExec() ) {}
+AForm::AForm(const AForm &rhs): _name( rhs.get_name()), _isSigned(get_isSigned()) , _gradeSign( rhs.get_gradeSign() ), _gradeExec( rhs.get_gradeExec() ) {}
 
 AForm& AForm::operator=(const AForm &rhs)
 {

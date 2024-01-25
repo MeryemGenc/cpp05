@@ -22,7 +22,8 @@ void ShrubberyCreationForm::execute(const Bureaucrat &executor) const
     if (this->get_gradeExec() < executor.getGrade())
         throw GradeTooLowException();
     
-    std::ofstream file( this->get_name() + "_shrubbery" );
+    std::string n = this->get_name() + "_shrubbery";
+    std::ofstream file( n.c_str());
     file << "#############################################################################" << std::endl << std::endl;
     file << "                                * "<< std::endl;
     file << "                              ****"<< std::endl;

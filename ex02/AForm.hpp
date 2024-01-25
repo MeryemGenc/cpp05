@@ -17,7 +17,7 @@ class AForm
     public:
         AForm(std::string name, int gradeSign);
         AForm(std::string name, int gradeSign, int gradeExecute);
-        ~AForm();
+        virtual ~AForm();
         AForm(const AForm &rhs);
         AForm& operator=(const AForm &rhs);
 
@@ -46,10 +46,6 @@ class AForm
                 virtual const char *what() const throw() { return "Grade too low to sign Form."; }
         };
 };
-
-/*
-Soyut sınıfların içinde saf sanal fonksiyonlar olmasının yanı sıra, soyut olmayan (normal) üye fonksiyonlar, veri elemanları ve diğer öğeler de bulunabilir. Ancak, en az bir saf sanal fonksiyonun olması, sınıfın soyut kabul edilmesi için yeterlidir.
-*/
 
 std::ostream& operator<<(std::ostream &out, const AForm& rhs);
 

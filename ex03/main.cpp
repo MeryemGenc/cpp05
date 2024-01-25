@@ -1,31 +1,39 @@
 #include "Bureaucrat.hpp"
-#include "ShrubberyCreationForm.hpp"
-#include "RobotomyRequestForm.hpp"
-#include "PresidentialPardonForm.hpp"
+#include "ShrubberyCreationForm.hpp" // KOntrol - gereksizse sil.
+#include "RobotomyRequestForm.hpp" // KOntrol - gereksizse sil.
+#include "PresidentialPardonForm.hpp" // KOntrol - gereksizse sil.
+#include "AForm.hpp"
 #include "Intern.hpp"
 
 int main( void )
 {
     {
-        Intern someRandomIntern;
-        AForm* rrf;
+        Intern  someRandomIntern;
+        AForm*   rrf;
         rrf = someRandomIntern.makeForm("robotomy request", "Bender");
-
-        // TRY
-
-        //Bureaucrat br("Ayse", 30);
-        //rrf->beSigned(br);
-    }
-    {
-        Intern someRandomIntern;
-        AForm* ppf;
-        ppf = someRandomIntern.makeForm("presidential pardon", "Bender");
-
-        // TRY
-
-        //Bureaucrat br("Ayse", 78);
-        //ppf->execute(br);
+        delete rrf;
     }
 
+    try {
+        Bureaucrat bureaucrat("ayse", 2);
+        ShrubberyCreationForm form1("Shrubbery");
+        RobotomyRequestForm form2("Robotomy");
+        PresidentialPardonForm form3("President");
+
+        std::cout << "\n\n**************** Shrubbery ****************" << std::endl;
+        bureaucrat.signForm(form1);
+        bureaucrat.executeForm(form1);
+        std::cout << "\n\n**************** Robotomy ****************" << std::endl;
+        bureaucrat.signForm(form2);
+        bureaucrat.executeForm(form2);
+        bureaucrat.executeForm(form2);
+        bureaucrat.executeForm(form2);
+        bureaucrat.executeForm(form2);
+        std::cout << "\n\n**************** President ****************" << std::endl;
+        bureaucrat.signForm(form3);
+        bureaucrat.executeForm(form3);
+    } catch (std::exception &e) {
+        std::cout << e.what() << std::endl;
+    }
     return 0;
 }

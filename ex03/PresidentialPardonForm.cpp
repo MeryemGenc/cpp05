@@ -1,7 +1,7 @@
 #include "PresidentialPardonForm.hpp"
 
 PresidentialPardonForm::PresidentialPardonForm(const std::string target): AForm("PresidentialPardonForm", 25, 5), _target(target)
-{   std::cout << "PresidentialPardonForm constructor called." << std::endl; }
+{ }
 
 PresidentialPardonForm::~PresidentialPardonForm() {}
 
@@ -9,7 +9,6 @@ PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm &rhs
 
 PresidentialPardonForm& PresidentialPardonForm::operator=(const PresidentialPardonForm &rhs)
 {
-    std::cout << "PresidentialPardonForm assigment function called." << std::endl;
     if (this != &rhs)
         this->_target = rhs._target;
     return (*this);

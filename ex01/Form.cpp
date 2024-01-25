@@ -1,6 +1,6 @@
 #include "Form.hpp"
 
-// ??? önce _name(name) şeklindeki atamalar mı çalışır, yoksa constructor içi mi çalışır? Constructor içi olması gerek ki fonksiyon doğru çalışsın.
+// In case of error, the creation of the object is prevented.
 Form::Form(const std::string name, int gradeSign): _name(name), _isSigned(false), _gradeSign(gradeSign), _gradeExec(_gradeSign)
 {
     if (gradeSign > 150)
@@ -19,7 +19,8 @@ Form::Form(const std::string name, int gradeSign, int gradeExec): _name(name), _
 
 Form::~Form() {}
 
-Form::Form(const Form &rhs): _name( rhs.get_name()), _gradeSign( rhs.get_gradeSign() ), _isSigned(get_isSigned()) , _gradeExec( rhs.get_gradeExec() ) {}
+// in copy constructor, variable definition must be true order.
+Form::Form(const Form &rhs): _name( rhs.get_name()), _isSigned(get_isSigned()), _gradeSign( rhs.get_gradeSign() ), _gradeExec( rhs.get_gradeExec() ) {}
 
 Form& Form::operator=(const Form &rhs)
 {

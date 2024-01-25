@@ -1,4 +1,5 @@
 #include "RobotomyRequestForm.hpp"
+#include <cstdlib> // srand() - rand() - for windows
 
 RobotomyRequestForm::RobotomyRequestForm(const std::string target): AForm("RobotomyRequestForm", 72, 45), _target(target)
 {   std::cout << "RobotomyRequestForm constructor called." << std::endl; }
@@ -11,7 +12,7 @@ RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm &rhs): AForm(
 RobotomyRequestForm& RobotomyRequestForm::operator=(const RobotomyRequestForm &rhs)
 {
     std::cout << "RobotomyRequestForm assigment function called." << std::endl;
-    (void)rhs; // diğer türlü hata verdi.
+    (void)rhs;
     return (*this);
 }
 
@@ -21,10 +22,11 @@ void RobotomyRequestForm::execute(const Bureaucrat &executor) const
         throw FormNotSignedException();
     if (this->get_gradeExec() < executor.getGrade())
         throw GradeTooLowException();
+    srand(time(0));
     std::cout << "RrrrobotVoicccee" << std::endl;
-    srand(time(NULL));
-    if (rand() % 2)
-        std::cout << executor.getName() <<  " has been robotomized successfully.";
-    if (rand() % 2 == 0)
-        std::cout << executor.getName() <<  " the robotomy failed.";
+	if (rand() % 2 == 0)
+		std::cout << this->_target << " has been robotomized successfully 50% of the time" << std::endl;
+	else
+		std::cout << this->_target << "'s robotization process failed!" << std::endl;
 }
+

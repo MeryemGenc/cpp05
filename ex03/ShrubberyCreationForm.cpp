@@ -1,7 +1,7 @@
 #include "ShrubberyCreationForm.hpp"
 
 ShrubberyCreationForm::ShrubberyCreationForm(const std::string target): AForm("ShrubberyCreationForm", 145, 137), _target(target)
-{   std::cout << "ShrubberyCreationForm constructor called." << std::endl; }
+{ }
 
 ShrubberyCreationForm::~ShrubberyCreationForm() {}
 
@@ -10,7 +10,6 @@ ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm &rhs): 
 
 ShrubberyCreationForm& ShrubberyCreationForm::operator=(const ShrubberyCreationForm &rhs)
 {
-    std::cout << "ShrubberyCreationForm assigment function called." << std::endl;
     (void)rhs;
     return (*this);
 }
@@ -22,7 +21,8 @@ void ShrubberyCreationForm::execute(const Bureaucrat &executor) const
     if (this->get_gradeExec() < executor.getGrade())
         throw GradeTooLowException();
     
-    std::ofstream file( this->get_name() + "_shrubbery" );
+    std::string n = this->get_name() + "_shrubbery";
+    std::ofstream file( n.c_str());
     file << "#############################################################################" << std::endl << std::endl;
     file << "                                * "<< std::endl;
     file << "                              ****"<< std::endl;
